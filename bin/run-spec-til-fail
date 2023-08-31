@@ -1,0 +1,11 @@
+#!/bin/bash
+
+filename=$1
+
+for i in `seq 1 100`
+do
+    echo test $i
+    echo "========"
+
+    bundle exec rspec "$filename" || break
+done

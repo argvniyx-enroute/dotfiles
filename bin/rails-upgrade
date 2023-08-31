@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Step 1:
+# bundle install
+#
+# Step 2:
+# ln -s Gemfile Gemfile.next && cp Gemfile.lock Gemfile.next.lock
+#
+# Step 3:
+# Check if Gemfile has
+# - conditional for Gemfile.next
+# - that the conditional requires the rails version we want
+#
+# Step 4:
+# nbundle install (within a threshold, since the resolver might get stuck)
+#
+# Step 4.X:
+# nbundle update [conflicting gem]
+#
+# Step 5+:
+# add test_gemfiles to coach.yml
+#
+# Step 6:
+# coach update ci

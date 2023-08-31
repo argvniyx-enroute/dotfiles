@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+require 'optparse'
+
+env = {}
+run_verbosely = false
+
+def env_to_s(env)
+  env.map { |k, v| "#{k}=#{v}" }.join(' ')
+end
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: bun [options] COMMAND"
+
+  opts.on("-n", "Run with vnext") do |n|
+    env["BUNDLE_GEMFILE"] = "Gemfile.next"
+  end
+
+  opts.on("-l", "Run headless") do |l|
+    env["CAPYBARA_DRIVER"] = "selenium_chrome_headless"
+  end
+
+  opts.on("-v", "Run verbosely") do |v|
+    run_verbosely = true
+  end 
+end.parse!
+
+command = "bundle " << ARGV.join(" ")
+
+puts "#{env_to_s env} #{command}" if run_verbosely
+system(env, command)

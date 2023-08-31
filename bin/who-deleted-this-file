@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "whodunnit"
+git log --full-history -1 -- "$1"
